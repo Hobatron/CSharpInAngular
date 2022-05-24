@@ -1,0 +1,18 @@
+.driver-col {
+  display: inline;
+  width: fit-content;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr
+}
+
+.input-width {
+  width: 100%;
+}
+
+.trash {
+  align-self: center;
+  margin-left: 3px;
+}

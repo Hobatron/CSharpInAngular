@@ -1,0 +1,37 @@
+<div class="container">
+  <form [formGroup]="formGroup">
+      <mat-grid-list cols="3" rowHeight="60px">
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput placeholder="Name">
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+            <mat-label>Unit</mat-label>
+            <mat-select formControlName="unit">
+              <mat-option *ngFor="let unit of units" [value]="unit.value">
+                {{unit.text}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+          <mat-label>Behavior</mat-label>
+          <mat-select formControlName="behavior">
+            <mat-option *ngFor="let Behavior of currentBehaviors" [value]="Behavior.value">
+              {{Behavior.text}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button class="trash"
+          (click)="remove()"
+          type="button"
+          matTooltip="Remove?"
+        ><i class="fa-solid fa-trash-can"></i></button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>
