@@ -1,6 +1,6 @@
-npm i
-ng serve
-Interesting things to look at:
+1. npm i
+2. ng serve
+### Interesting things to look at:
   - models/script.store.ts
     - This is what points at the remote file.
   - services/script.service.ts
