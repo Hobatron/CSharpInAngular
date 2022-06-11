@@ -9,3 +9,28 @@
     - where we call script.load, passing the script to load then running .boot, to start the script
   - driver.comp.ts
     - subs to the formControls.valueChanges and the calls to Maths.FormCalcs(x, y) => number
+
+
+Program.cs:
+
+```C#
+using System;
+using DotNetJS;
+using Microsoft.JSInterop;
+
+namespace Maths;
+
+public partial class Program
+{
+    // Entry point is invoked by the JavaScript runtime on boot.
+    public static void Main()
+    {
+    }
+
+    [JSInvokable]
+    public static int FormCalcs(int x, int y)
+    {
+        return x + y;
+    }
+}
+```
