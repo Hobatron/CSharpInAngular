@@ -12,6 +12,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ManageDriverComponent } from './manage-driver/manage-driver.component';
 import { DriverComponent } from './driver/driver.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ScriptService } from './services/script.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     MatTooltipModule
   ],
-  providers: [FormBuilder],
+  providers: [FormBuilder,ScriptService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

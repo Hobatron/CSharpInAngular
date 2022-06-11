@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run copy:assets && ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "copy:assets": "cp -R src/dotnet.js",
     "test": "ng test"
   },
   "private": true,

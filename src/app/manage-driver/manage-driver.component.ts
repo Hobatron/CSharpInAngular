@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
+import { MyCSharp } from '../models/myCSharp';
 import { ApiService } from '../services/api.service';
 import { FormServiceService } from '../services/form-service.service';
+import { ScriptService } from '../services/script.service';
 
 @Component({
   selector: 'app-manage-driver',
@@ -17,8 +19,9 @@ export class ManageDriverComponent implements OnInit {
     results (Sum), while "Total Customers\n
     over the same period would be the\n
     latest value(Balance)`;
+  private dotWindow = window as any;
 
-  constructor(private formService: FormServiceService, private apiService: ApiService) { }
+  constructor(private formService: FormServiceService, private apiService: ApiService, private script: ScriptService) { }
 
   get form() {
     return this.formService.form as FormGroup
@@ -29,8 +32,12 @@ export class ManageDriverComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    this.loadTestData()
+  async ngOnInit(): Promise<void> {
+    this.loadTestData();
+    this.script.load('helloWorld').then(data => {
+      this.dotWindow.dotnet.HelloWorld.GetHostName = () => "Browser";
+      this.dotWindow.dotnet.boot();
+    }).catch(error => console.log(error));
   }
 
   loadTestData() {
