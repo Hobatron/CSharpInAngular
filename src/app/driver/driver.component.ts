@@ -24,7 +24,6 @@ export class DriverComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subs.push(
       this.formGroup.controls['x'].valueChanges.subscribe((num) => {
-        console.log(num)
         let total = window.dotnet.Maths.FormCalcs(num ?? 0, this.formGroup.controls['y'].value ?? 0);
         this.formGroup.controls['total'].setValue(total);
       }),
