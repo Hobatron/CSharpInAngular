@@ -33,6 +33,7 @@ export class ManageDriverComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.loadTestData();
     this.script.load('formCalcs').then(data => {
+      console.log(window.dotnet);
       window.dotnet.boot(); // starts stuff up
     }).catch(error => console.log(error));
   }
