@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormGroup } from '@angular/forms';
-import { MyCSharp } from '../models/myCSharp';
 import { ApiService } from '../services/api.service';
 import { FormServiceService } from '../services/form-service.service';
 import { ScriptService } from '../services/script.service';
@@ -19,7 +18,6 @@ export class ManageDriverComponent implements OnInit {
     results (Sum), while "Total Customers\n
     over the same period would be the\n
     latest value(Balance)`;
-  private dotWindow = window as any;
 
   constructor(private formService: FormServiceService, private apiService: ApiService, private script: ScriptService) { }
 
@@ -34,9 +32,8 @@ export class ManageDriverComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.loadTestData();
-    this.script.load('helloWorld').then(data => {
-      this.dotWindow.dotnet.HelloWorld.GetHostName = () => "Browser";
-      this.dotWindow.dotnet.boot();
+    this.script.load('formCalcs').then(data => {
+      window.dotnet.boot(); // starts stuff up
     }).catch(error => console.log(error));
   }
 

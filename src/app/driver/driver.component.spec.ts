@@ -19,7 +19,7 @@ describe('DriverComponent', () => {
     fixture = TestBed.createComponent(DriverComponent);
     component = fixture.componentInstance;
     component.formGroup = fb.group({
-      unit: ['']
+      x: ['']
     })
     fixture.detectChanges();
   });

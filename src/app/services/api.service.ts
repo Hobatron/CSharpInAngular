@@ -12,19 +12,9 @@ export class ApiService {
   public get(): Observable<Driver[]> {
     return of([
       {
-        name: "test data1",
-        unit: "$",
-        behavior: "Sum"
-      } as Driver,
-      {
-        name: "test data2",
-        unit: "$",
-        behavior: "Balance"
-      } as Driver,
-      {
-        name: "test data3",
-        unit: "%",
-        behavior: "Average"
+        x: 1,
+        y: 2,
+        total: 3
       } as Driver
     ])
   }

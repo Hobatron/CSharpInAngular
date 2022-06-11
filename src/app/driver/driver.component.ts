@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { Option } from '../models/options.model';
+import { ScriptService } from '../services/script.service';
 
 @Component({
   selector: 'app-driver',
@@ -13,55 +13,28 @@ export class DriverComponent implements OnInit, OnDestroy {
   @Input() formIndex!: number;
   @Output() delete = new EventEmitter<number>();
 
-  public sumBalanceOptions = [
-    {text: 'Sum', value: 'Sum'},
-    {text: 'Balance', value: 'Balance'}
-  ]
-  public average = [
-    {text: 'Average', value: 'Average'}
-  ] as Option[]
-
-  public allBehaviors = [
-    ...this.sumBalanceOptions,
-    ...this.average
-  ] as Option[]
-
-  public units = [
-    {text: '# Number', value: '#'},
-    {text: '$ Dollar', value: '$'},
-    {text: '% Percent', value: '%'}
-  ] as Option[]
-
-  public currentBehaviors?: Option[];
-
   private subs: Subscription[] = [];
 
-  constructor() { }
+  constructor(private maths: ScriptService) { }
 
   ngOnDestroy(): void {
     this.subs.forEach((s) => s.unsubscribe);
   }
 
   ngOnInit(): void {
-    this.currentBehaviors = this.allBehaviors;
-    this.disableHandler(this.formGroup.controls['unit'].value);
-    this.subs.push(this.formGroup.controls['unit'].valueChanges.subscribe((value: string) => {
-      this.disableHandler(value);
-    }));
+    this.subs.push(
+      this.formGroup.controls['x'].valueChanges.subscribe((num) => {
+        let total = window.dotnet.Maths.FormCalcs(num, this.formGroup.controls['y'].value);
+        this.formGroup.controls['total'].setValue(total);
+      }),
+      this.formGroup.controls['y'].valueChanges.subscribe((num) => {
+        let total = window.dotnet.Maths.FormCalcs(this.formGroup.controls['x'].value, num);
+        this.formGroup.controls['total'].setValue(total);
+      })
+    )
   }
 
   remove() {
     this.delete.emit(this.formIndex);
-  }
-
-  disableHandler(value: string) {
-    if (value === '$' || value === '#') {
-      this.currentBehaviors = this.sumBalanceOptions;
-      this.formGroup.get('behavior')?.enable();
-    } else if (value === '%') {
-      this.currentBehaviors = this.average;
-      this.formGroup.get('behavior')?.setValue('Average');
-      this.formGroup.get('behavior')?.disable();
-    };
   }
 }

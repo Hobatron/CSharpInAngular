@@ -3,28 +3,20 @@
       <mat-grid-list cols="3" rowHeight="60px">
         <mat-grid-tile>
           <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input formControlName="name" matInput placeholder="Name">
+            <mat-label>x</mat-label>
+            <input matInput type="number" formControlName="x" >
           </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
           <mat-form-field appearance="outline">
-            <mat-label>Unit</mat-label>
-            <mat-select formControlName="unit">
-              <mat-option *ngFor="let unit of units" [value]="unit.value">
-                {{unit.text}}
-              </mat-option>
-            </mat-select>
+            <mat-label>y</mat-label>
+            <input matInput type="number" formControlName="y">
           </mat-form-field>
         </mat-grid-tile>
       <mat-grid-tile>
         <mat-form-field appearance="outline">
-          <mat-label>Behavior</mat-label>
-          <mat-select formControlName="behavior">
-            <mat-option *ngFor="let Behavior of currentBehaviors" [value]="Behavior.value">
-              {{Behavior.text}}
-            </mat-option>
-          </mat-select>
+          <mat-label>total</mat-label>
+          <input matInput type="number" formControlName="total">
         </mat-form-field>
         <button mat-raised-button class="trash"
           (click)="remove()"
