@@ -3,6 +3,8 @@
 ### Interesting things to look at:
   - [models/script.store.ts](https://github.com/Hobatron/CSharpInAngular/blob/master/src/app/models/script.store.ts)
     - This is what points at the remote file.
+  - [models/myCSharp.d.ts](https://github.com/Hobatron/CSharpInAngular/blob/master/src/app/models/myCSharp.d.ts)
+    - .d.ts matters here, this is where I extend window and add methods
   - [services/script.service.ts](https://github.com/Hobatron/CSharpInAngular/blob/master/src/app/services/script.service.ts)
     - This is what attaches the script to the window
   - [manage-driver.comp.ts](https://github.com/Hobatron/CSharpInAngular/blob/master/src/app/manage-driver/manage-driver.component.ts)
